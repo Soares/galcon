@@ -90,18 +90,18 @@ class Attack(Commitment):
 
     def take(self):
         # TODO: sort better, adjust for attackers better
-        growth = self.planet.growth_rate if self.planet.owner == ENEMIES else 0
+        growth = self.planet.growth_rate if self.planet.owner & ENEMIES else 0
         base = self.planet.ship_count + 1
         planets = sorted(self.universe.my_planets, key=lambda p: p.distance(self.planet))
         for i in range(len(planets)):
             attackers = planets[:i+1]
             distance = planets[i].distance(self.planet)
             available = sum(p.available(self.planet, distance) for p in attackers)
-            needed = base + (distance * growth)
-            if available >= needed: break
+            required = base + (distance * growth)
+            if available >= required: break
         else:
             raise InsufficientFleets
-        return super(Attack, self).take(attackers, needed, distance)
+        return super(Attack, self).take(attackers, required, distance)
 
     def __repr__(self):
         return 'Attack %s (%s)' % (self.planet, self.priority)
@@ -127,17 +127,20 @@ class Defend(MultiAction):
 
 
 class Reinforce(MultiAction):
+    # TODO: if the first request failes, make a lighter one
+    # (override engage)
+
     def __init__(self, planet):
         super(MultiAction, self).__init__(planet)
         ours = self.universe.find_fleets(owner=ME, destination=planet)
         time = max(f.turns_remaining for f in ours) if ours else 0
         fleets = planet.ship_count + (planet.growth_rate * time) + 1
         fleets -= sum(f.ship_count for f in ours)
-        self.fleets = fleets
+        self.fleets, self.time = fleets, time
         self.actions = [Request(planet, fleets, time)] if fleets > 0 else []
         self.priority = planet.growth_rate * 10
         for fleet in self.universe.find_fleets(owner=ENEMIES, destination=planet):
             self.actions.append(OpposeFleet(planet, fleet))
 
     def __repr__(self):
-        return 'Reinforce %s (%s) with %s' % (self.planet, self.priority, self.fleets)
+        return 'Reinforce %s (%s) with %s by %s' % (self.planet, self.priority, self.fleets, self.time)
