@@ -10,15 +10,18 @@ class Planet(planet.Planet):
         self.contracts = {}
         if self.owner == ME:
             return action.Defend(self)
-        return action.Conquer(self)
+        elif self.universe.find_fleets(owner=ME, destination=self):
+            return action.Reinforce(self)
+        return action.Attack(self)
 
     def fortify(self):
-        # TODO: Something. Anything.
+        # TODO: Something. Anything. Not this.
         pass
 
     def available(self, dest, expiration):
         delay = self.distance(dest)
         build_time = expiration - delay
+        if build_time < 0: return 0
         available = self.ship_count - 1
         available += build_time * self.growth_rate
         steps = max(self.contracts.keys()) if self.contracts else 0
@@ -31,4 +34,8 @@ class Planet(planet.Planet):
             if future_growth < 0:
                 available += future_growth
                 future_growth = 0
-        return available
+        return max(0, available)
+
+    def safety(self):
+        # TODO: actually assess planet safety
+        return (self.x, self.y)
