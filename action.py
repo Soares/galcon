@@ -1,50 +1,119 @@
+from itertools import chain
 from contract import Contract
-
-GROWTH_RATE = 5
-CONTRACT_COST = 3
-OUR_FLEETS = 1
-ENEMY_FLEETS = 3
-
+from issues import InsufficientFleets
+from planetwars.player import ME, ENEMIES
 
 class Action:
+    priority = 1
+
     def __init__(self, planet):
+        self.universe = planet.universe
         self.planet = planet
-        self.contract = self.create_contract()
+        self.contracts = set()
 
-    def apply(self):
-        return self.contract.seal()
+    def commit(self, source, dest, amount, time):
+        contract = Contract(source, dest, amount, time)
+        self.contracts.add(contract)
+        return contract
 
-    @property
-    def weight(self):
-        return self.WEIGHT * self.score()
+    def take(self):
+        # Start with the back planets
+        # Find guys who can send people here
+        # Make them do it
+        return self.contracts
+
+    def abort(self):
+        for contract in self.contracts:
+            contract.abort()
+        return ()
 
     def __lt__(self, other):
-        return self.weight < other.weight
+        return self.priority > other.priority
 
 
-class ReinforceOurs(Action):
-    WEIGHT = 10
+class Commitment(Action):
+    def take(self, attackers, needed, time):
+        for planet in sorted(attackers, key=lambda p: p.safety):
+            fleets = min(planet.available(self, time))
+            self.commit(planet, self.planet, fleets, time)
+            needed -= fleets
+            if not needed: break
+        else:
+            raise InsufficientFleets
+        return self.contracts
 
-    def create_contract(self):
-        fleets, time = self.planet.necessary_backup
-        return Contract(self.planet, fleets, time)
 
-    def score(self):
-        g = self.planet.growth_rate * GROWTH_RATE
-        c = self.contract.cost * CONTRACT_COST
-        f = self.planet.ship_count * OUR_FLEETS
-        return g + c + f
+class Request(Commitment):
+    def __init__(self, planet, fleets, time):
+        super(Request, self).__init__(planet)
+        self.fleets = fleets
+        self.time = time
 
-    def apply(self):
-        try:
+    def take(self):
+        return super(Request, self).take(self.universe.my_planets, self.fleets, self.time)
 
-class ReinforceContested(Action):
-    WEIGHT = 5
 
-class ConquerInner(Action):
-    WEIGHT = 7
 
-class Advance(Action):
-    WEIGHT = 3
+class OpposeFleet(Request):
+    def __init__(self, planet, fleet):
+        ours = planet.universe.find_fleets(owner=ME, destination=planet)
+        sent = sum(f.ship_count for f in ours if f.opposition == fleet)
+        super(OpposeFleet, self).__init__(planet, fleet.ship_count - sent, fleet.turns_remaining)
+        self.fleet = fleet
 
-# TODO: Add fortifications and abandonments
+    def commit(self, *args, **kwargs):
+        contract = super(OpposeFleet, self).commit(*args, **kwargs)
+        contract.oppose(self.fleet)
+
+
+class Attack(Commitment):
+    def take(self):
+        # TODO: sort better
+        base = self.planet.ship_count
+        growth = self.planet.growth_rate if self.planet.owner == ENEMIES else 0
+        planets = sorted(self.universe.my_planets, key=lambda p: p.distance(self.planet))
+        for i in range(len(planets)):
+            attackers = planets[:i+1]
+            distance = planets[i].distance(self.planet)
+            available = sum(p.available(self.planet, distance) for p in attackers)
+            needed = base + (distance * growth)
+            if available >= needed: break
+        else:
+            raise InsufficientFleets
+        return super(Attack, self).take(attackers, needed, distance)
+
+
+class MultiAction(Action):
+    def take(self):
+        return chain(a.take() for a in self.actions)
+
+    def abort(self):
+        return chain(a.abort() for a in self.actions)
+
+
+
+class Defend(MultiAction):
+    def __init__(self, planet):
+        super(Defend, self).__init__(planet)
+        self.actions = [OpposeFleet(planet, f) for f in planet.attacking_fleets]
+
+    def __repr__(self):
+        return 'Defend %s (%s)' % (self.planet, self.priority)
+
+
+class Conquer(MultiAction):
+    def __init__(self, planet):
+        super(Conquer, self).__init__(planet)
+        ours = self.universe.find_fleets(owner=ME, destination=planet)
+        ours = filter(lambda f: not f.opposition, ours)
+        if ours:
+            time = max(f.turns_remaining for f in ours)
+            fleets = sum(f.ship_count for f in ours)
+            self.actions = [Request(planet, planet.ship_count - fleets, time)]
+        else:
+            self.actions = [Attack(planet)]
+        for fleet in self.universe.find_fleets(owner=ENEMIES, destination=planet):
+            self.actions.append(OpposeFleet(planet, fleet))
+
+    def __repr__(self):
+        return 'Conquer %s (%s)' % (self.planet, self.priority)

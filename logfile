@@ -427,3 +427,1055 @@
 2010-11-25 18:51:43,931 INFO: PLANETS: Planets([<P(19) #4 +1>, <P(10) #7 +1>, <P(22) #23 +3>, <P(12) #16 +5>, <P(1) #61 +5>, <P(4) #13 +3>, <P(5) #3 +1>, <P(18) #9 +2>])
 2010-11-25 18:51:43,931 INFO: NEUTRAL: 16
 2010-11-25 18:51:43,933 INFO: ### TURN END ### (time taken: 0.0024 s)
+2010-11-26 01:04:40,250 INFO: ----------- GAME START -----------
+2010-11-26 01:04:40,391 INFO: === TURN START === (Turn no: 1)
+2010-11-26 01:04:40,392 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,405 INFO: ### TURN END ### (time taken: 0.0135 s)
+2010-11-26 01:04:40,434 INFO: === TURN START === (Turn no: 2)
+2010-11-26 01:04:40,435 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,435 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:40,449 INFO: === TURN START === (Turn no: 3)
+2010-11-26 01:04:40,450 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,450 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:40,501 INFO: === TURN START === (Turn no: 4)
+2010-11-26 01:04:40,502 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,502 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,509 INFO: === TURN START === (Turn no: 5)
+2010-11-26 01:04:40,509 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,510 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,529 INFO: === TURN START === (Turn no: 6)
+2010-11-26 01:04:40,529 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,530 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:40,555 INFO: === TURN START === (Turn no: 7)
+2010-11-26 01:04:40,555 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,555 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,581 INFO: === TURN START === (Turn no: 8)
+2010-11-26 01:04:40,581 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,581 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,602 INFO: === TURN START === (Turn no: 9)
+2010-11-26 01:04:40,603 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,603 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,622 INFO: === TURN START === (Turn no: 10)
+2010-11-26 01:04:40,623 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,623 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,652 INFO: === TURN START === (Turn no: 11)
+2010-11-26 01:04:40,652 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,652 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,670 INFO: === TURN START === (Turn no: 12)
+2010-11-26 01:04:40,671 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,671 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,707 INFO: === TURN START === (Turn no: 13)
+2010-11-26 01:04:40,707 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,708 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,726 INFO: === TURN START === (Turn no: 14)
+2010-11-26 01:04:40,727 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,727 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,759 INFO: === TURN START === (Turn no: 15)
+2010-11-26 01:04:40,760 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,760 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,788 INFO: === TURN START === (Turn no: 16)
+2010-11-26 01:04:40,788 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,789 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,801 INFO: === TURN START === (Turn no: 17)
+2010-11-26 01:04:40,802 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,802 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,846 INFO: === TURN START === (Turn no: 18)
+2010-11-26 01:04:40,846 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,846 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,853 INFO: === TURN START === (Turn no: 19)
+2010-11-26 01:04:40,853 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,853 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:40,861 INFO: === TURN START === (Turn no: 20)
+2010-11-26 01:04:40,861 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,861 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:40,913 INFO: === TURN START === (Turn no: 21)
+2010-11-26 01:04:40,913 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,914 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,940 INFO: === TURN START === (Turn no: 22)
+2010-11-26 01:04:40,941 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,941 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:40,978 INFO: === TURN START === (Turn no: 23)
+2010-11-26 01:04:40,979 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,979 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:40,984 INFO: === TURN START === (Turn no: 24)
+2010-11-26 01:04:40,984 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:40,985 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,022 INFO: === TURN START === (Turn no: 25)
+2010-11-26 01:04:41,023 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,023 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,036 INFO: === TURN START === (Turn no: 26)
+2010-11-26 01:04:41,036 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,037 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,074 INFO: === TURN START === (Turn no: 27)
+2010-11-26 01:04:41,075 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,075 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,105 INFO: === TURN START === (Turn no: 28)
+2010-11-26 01:04:41,105 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,105 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,110 INFO: === TURN START === (Turn no: 29)
+2010-11-26 01:04:41,111 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,111 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,115 INFO: === TURN START === (Turn no: 30)
+2010-11-26 01:04:41,115 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,115 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,119 INFO: === TURN START === (Turn no: 31)
+2010-11-26 01:04:41,120 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,120 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,160 INFO: === TURN START === (Turn no: 32)
+2010-11-26 01:04:41,160 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,160 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,199 INFO: === TURN START === (Turn no: 33)
+2010-11-26 01:04:41,199 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,200 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,203 INFO: === TURN START === (Turn no: 34)
+2010-11-26 01:04:41,203 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,203 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,207 INFO: === TURN START === (Turn no: 35)
+2010-11-26 01:04:41,207 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,207 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,210 INFO: === TURN START === (Turn no: 36)
+2010-11-26 01:04:41,211 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,211 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,233 INFO: === TURN START === (Turn no: 37)
+2010-11-26 01:04:41,233 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,234 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,237 INFO: === TURN START === (Turn no: 38)
+2010-11-26 01:04:41,237 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,238 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,241 INFO: === TURN START === (Turn no: 39)
+2010-11-26 01:04:41,241 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,242 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,264 INFO: === TURN START === (Turn no: 40)
+2010-11-26 01:04:41,264 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,265 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,269 INFO: === TURN START === (Turn no: 41)
+2010-11-26 01:04:41,269 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,270 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,272 INFO: === TURN START === (Turn no: 42)
+2010-11-26 01:04:41,272 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,272 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,315 INFO: === TURN START === (Turn no: 43)
+2010-11-26 01:04:41,315 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,316 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,318 INFO: === TURN START === (Turn no: 44)
+2010-11-26 01:04:41,319 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,319 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,324 INFO: === TURN START === (Turn no: 45)
+2010-11-26 01:04:41,325 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,325 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,329 INFO: === TURN START === (Turn no: 46)
+2010-11-26 01:04:41,330 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,330 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,333 INFO: === TURN START === (Turn no: 47)
+2010-11-26 01:04:41,333 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,333 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,336 INFO: === TURN START === (Turn no: 48)
+2010-11-26 01:04:41,336 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,336 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,350 INFO: === TURN START === (Turn no: 49)
+2010-11-26 01:04:41,350 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,350 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,368 INFO: === TURN START === (Turn no: 50)
+2010-11-26 01:04:41,369 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,369 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,379 INFO: === TURN START === (Turn no: 51)
+2010-11-26 01:04:41,379 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,379 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,386 INFO: === TURN START === (Turn no: 52)
+2010-11-26 01:04:41,386 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,387 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,391 INFO: === TURN START === (Turn no: 53)
+2010-11-26 01:04:41,391 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,392 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,393 INFO: === TURN START === (Turn no: 54)
+2010-11-26 01:04:41,393 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,394 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,402 INFO: === TURN START === (Turn no: 55)
+2010-11-26 01:04:41,403 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,403 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,407 INFO: === TURN START === (Turn no: 56)
+2010-11-26 01:04:41,407 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,407 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,432 INFO: === TURN START === (Turn no: 57)
+2010-11-26 01:04:41,432 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,432 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,437 INFO: === TURN START === (Turn no: 58)
+2010-11-26 01:04:41,437 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,437 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,444 INFO: === TURN START === (Turn no: 59)
+2010-11-26 01:04:41,444 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,444 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,455 INFO: === TURN START === (Turn no: 60)
+2010-11-26 01:04:41,455 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,455 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,470 INFO: === TURN START === (Turn no: 61)
+2010-11-26 01:04:41,471 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,471 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,474 INFO: === TURN START === (Turn no: 62)
+2010-11-26 01:04:41,474 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,474 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,506 INFO: === TURN START === (Turn no: 63)
+2010-11-26 01:04:41,506 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,506 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,525 INFO: === TURN START === (Turn no: 64)
+2010-11-26 01:04:41,526 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,526 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,541 INFO: === TURN START === (Turn no: 65)
+2010-11-26 01:04:41,542 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,542 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,552 INFO: === TURN START === (Turn no: 66)
+2010-11-26 01:04:41,552 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,552 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,561 INFO: === TURN START === (Turn no: 67)
+2010-11-26 01:04:41,562 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,562 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,570 INFO: === TURN START === (Turn no: 68)
+2010-11-26 01:04:41,571 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,571 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,585 INFO: === TURN START === (Turn no: 69)
+2010-11-26 01:04:41,586 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,586 INFO: ### TURN END ### (time taken: 0.0003 s)
+2010-11-26 01:04:41,593 INFO: === TURN START === (Turn no: 70)
+2010-11-26 01:04:41,594 ERROR: Exception in bot.do_turn()
+Traceback (most recent call last):
+  File "/home/nate/Desktop/galcon/galcon/planetwars/game.py", line 85, in main
+    self.bot.do_turn()
+  File "bot.py", line 21, in do_turn
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "bot.py", line 21, in <genexpr>
+    actions = sorted(p.action() for p in self.universe.planets)
+  File "/home/nate/Desktop/galcon/galcon/planet.py", line 12, in action
+    return action.Defend(self)
+  File "/home/nate/Desktop/galcon/galcon/action.py", line 97, in __init__
+    super(Defend, self).__init__(planet)
+TypeError: must be type, not classobj
+2010-11-26 01:04:41,594 INFO: ### TURN END ### (time taken: 0.0004 s)
+2010-11-26 01:04:41,613 INFO: ########### GAME END ########### (Turn count: 70)

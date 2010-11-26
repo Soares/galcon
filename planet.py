@@ -1,77 +1,34 @@
 from logging import getLogger
 log = getLogger('nate')
 
+import action
 from planetwars import planet
-from commitment import Commitment
-from contract import Contracts
-from issues import InsufficientFleets, MustAbandon
-from planetwars.player import ENEMIES
-
-UNCONTESTED, CONTESTED, ABANDONED = 0, 1, 2
+from planetwars.player import ME
 
 class Planet(planet.Planet):
-    _commitments = {}
-    _contracts = {}
-    state = UNCONTESTED
+    def action(self):
+        self.contracts = {}
+        if self.owner == ME:
+            return action.Defend(self)
+        return action.Conquer(self)
 
-    def __init__(self, *args, **kwargs):
-        super(Planet, self).__init__(*args, **kwargs)
-
-    @property
-    def commitments(self):
-        return Planet._commitments.setdefault(self.id, set())
-
-    @property
-    def contracts(self):
-        if self.id not in Planet._contracts:
-            Planet._contracts[self.id] = Contracts(self)
-        return Planet._contracts[self.id]
-
-    def oppose(self, fleet):
-        log.info('Opposing %s' % fleet)
-        commitment = Commitment(self, fleet.ship_count + 1, fleet.turns_remaining)
-        try:
-            commitment.gather_contracts()
-        except InsufficientFleets:
-            raise MustAbandon
-        log.info(str(commitment))
-        self.commitments.add(commitment)
-
-    def abandon_to(self, fleet):
-        # TODO: Actually abandon lost causes
-        # Remove abandoned fleets from committed
-        log.info('Insufficient fleets to defend %s against %s.' % (self, fleet))
+    def fortify(self):
+        # TODO: Something. Anything.
         pass
-
-    def conquer(self):
-        commitment = Commitment(self, self.ship_count + 1, None)
-        commitment.gather_contracts()
-        log.info('Conquering %s' % self)
-        log.info(str(commitment))
-        self.commitments.add(commitment)
 
     def available(self, dest, expiration):
         delay = self.distance(dest)
         build_time = expiration - delay
-        available = self.ship_count - 1 - self.growth_rate
-        steps = max(build_time, self.contracts.max)
-        future_buffer = 0
+        available = self.ship_count - 1
+        available += build_time * self.growth_rate
+        steps = max(self.contracts.keys()) if self.contracts else 0
+        future_growth = 0
         for i in range(steps + 1):
-            if i <= build_time:
-                available += self.growth_rate
-            else:
-                future_buffer += self.growth_rate
-            for contract in self.contracts[i]:
-                future_buffer -= contract.fleets
-            if future_buffer < 0:
-                available += future_buffer
-                future_buffer = 0
+            if i > build_time:
+                future_growth += self.growth_rate
+            for contract in self.contracts.get(i, set()):
+                future_growth -= contract.fleets
+            if future_growth < 0:
+                available += future_growth
+                future_growth = 0
         return available
-
-    def contract(self, dest, fleets, turns):
-        self.contracts.add(dest, fleets, turns)
-
-    @property
-    def distance_to_enemy(self):
-        neighbor = self.find_nearest_neighbor(owner=ENEMIES)
-        return self.distance(neighbor)
