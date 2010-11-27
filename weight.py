@@ -31,10 +31,10 @@ def weigh_contested(planet):
     return 1 if fleets else 0
 
 def weigh_safety(planet):
-    return max(planet.safety, 9) / 9.0
+    return 0 if planet.unsafe else 1
 
 def weigh_proximity(planet):
-    return 10.0 / min(10, planet.proximity)
+    return max(100, planet.proximity) / 100
 
 def weigh_attackers(planet):
     attackers = planet.universe.find_fleets(owner=ENEMIES, destination=planet)
@@ -52,7 +52,7 @@ def weigh_defend(action):
     g = weigh_growth(action.planet)
     s = weigh_safety(action.planet)
     a = weigh_attackers(action.planet)
-    return (50*g) + (30*s) + (20*a)
+    return (60*g) + (30*s) + (10*a)
 
 def weigh_reinforce(action):
     g = weigh_growth(action.planet)
@@ -69,7 +69,7 @@ def weigh_attack(action):
     c = weigh_cost(action.planet)
     t = weigh_contested(action.planet)
     e = weigh_steal(action.planet)
-    return (10*g) + (35*d) + (15*s) + (20*c) + (10*t) + (10*e)
+    return (20*g) + (35*d) + (10*s) + (15*c) + (10*t) + (10*e)
 
 def weigh_reserve(action):
     g = weigh_growth(action.planet)

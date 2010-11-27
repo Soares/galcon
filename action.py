@@ -96,7 +96,7 @@ class OpposeFleet(Request):
 class Defend(MultiAction):
     @property
     def priority(self):
-        return weight.weigh_defend(self) * 15
+        return weight.weigh_defend(self) * 18
 
     def __init__(self, planet):
         super(Defend, self).__init__(planet)
