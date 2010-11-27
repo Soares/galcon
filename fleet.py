@@ -4,4 +4,4 @@ log = getLogger('nate')
 from planetwars import fleet
 
 class Fleet(fleet.Fleet):
-    opposition = None
+    pass

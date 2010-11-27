@@ -1,2 +1,0 @@
-class InsufficientFleets(Exception):
-    pass

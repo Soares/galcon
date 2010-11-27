@@ -54,14 +54,6 @@ def weigh_defend(action):
     a = weigh_attackers(action.planet)
     return (60*g) + (30*s) + (10*a)
 
-def weigh_reinforce(action):
-    g = weigh_growth(action.planet)
-    s = weigh_safety(action.planet)
-    c = weigh_commitment(action.planet)
-    t = weigh_contested(action.planet)
-    e = weigh_steal(action.planet)
-    return (30*g) + (20*s) + (10*c) + (20*t) + (20*e)
-
 def weigh_attack(action):
     g = weigh_growth(action.planet)
     d = weigh_distance(action.planet)
@@ -69,10 +61,4 @@ def weigh_attack(action):
     c = weigh_cost(action.planet)
     t = weigh_contested(action.planet)
     e = weigh_steal(action.planet)
-    return (20*g) + (35*d) + (10*s) + (15*c) + (10*t) + (10*e)
-
-def weigh_reserve(action):
-    g = weigh_growth(action.planet)
-    p = weigh_proximity(action.planet)
-    a = weigh_attackers(action.planet)
-    return (60*g) + (30*p) + (10*a)
+    return (30*g) + (50*d) + (10*c) + (10*s)
