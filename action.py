@@ -1,3 +1,4 @@
+import weight
 from itertools import chain
 from logging import getLogger
 log = getLogger('nate')
@@ -7,8 +8,6 @@ from exception import InsufficientFleets
 from planetwars.player import ME, ENEMIES
 
 class Action(object):
-    priority = 1
-
     def __init__(self, planet):
         self.universe = planet.universe
         self.planet = planet
@@ -19,7 +18,6 @@ class Action(object):
             contracts = self.take()
         except InsufficientFleets:
             contracts = self.abort()
-            log.info("Couldn't %s" % self)
         else:
             log.info(self)
         return contracts
@@ -45,19 +43,30 @@ class Action(object):
         return self.priority > other.priority
 
     def __repr__(self):
-        return '%s: %s (%s)' % (self.__class__.__name__, self.planet, self.priority)
+        return '%s: %s %s' % (int(self.priority), self.__class__.__name__, self.planet)
 
 
 class Commitment(Action):
     def take(self, attackers, needed, time):
-        for planet in sorted(attackers, key=lambda p: p.safety):
+        log.debug('Committing %s from %s in %s' % (needed, attackers, time))
+        for planet in sorted(attackers, key=lambda p: -p.proximity):
+            log.debug('%s available from %s' % (planet.available(self.planet, time), planet))
             fleets = min(needed, planet.available(self.planet, time))
             self.commit(planet, self.planet, fleets, time)
             needed -= fleets
             if not needed: break
         else:
+            log.debug('failed')
             raise InsufficientFleets
         return self.contracts
+
+
+class MultiAction(Action):
+    def take(self):
+        return list(chain(*(a.take() for a in self.actions)))
+
+    def abort(self):
+        return list(chain(*[a.abort() for a in self.actions]))
 
 
 class Request(Commitment):
@@ -82,11 +91,54 @@ class OpposeFleet(Request):
         contract = super(OpposeFleet, self).commit(*args, **kwargs)
         if contract: contract.oppose(self.fleet)
 
+    def take(self):
+        log.debug('DEFENDING')
+        return super(OpposeFleet, self).take()
+
+
+
+class Defend(MultiAction):
+    @property
+    def priority(self):
+        return weight.weigh_defend(self) * 15
+
+    def __init__(self, planet):
+        super(Defend, self).__init__(planet)
+        fleets = planet.attacking_fleets
+        self.actions = [OpposeFleet(planet, f) for f in fleets]
+        self.forces = sum(f.ship_count for f in fleets)
+
+    def __repr__(self):
+        return super(Defend, self).__repr__() + ' (against %s)' % self.forces
+
+
+class Reinforce(MultiAction):
+    # TODO: if the first request fails, make a lighter one
+    # (override engage)
+
+    @property
+    def priority(self):
+        return weight.weigh_reinforce(self) * 13
+
+    def __init__(self, planet):
+        super(Reinforce, self).__init__(planet)
+        ours = self.universe.find_fleets(owner=ME, destination=planet)
+        time = max(f.turns_remaining for f in ours) if ours else 0
+        fleets = planet.ship_count + (planet.growth_rate * time) + 1
+        fleets -= sum(f.ship_count for f in ours)
+        self.fleets, self.time = fleets, time
+        self.actions = [Request(planet, fleets, time)] if fleets > 0 else []
+        for fleet in self.universe.find_fleets(owner=ENEMIES, destination=planet):
+            self.actions.append(OpposeFleet(planet, fleet))
+
+    def __repr__(self):
+        return super(Reinforce, self).__repr__() + '(with %s by %s)' % (self.fleets, self.time)
+
 
 class Attack(Commitment):
-    def __init__(self, planet):
-        super(Attack, self).__init__(planet)
-        self.priority = planet.growth_rate
+    @property
+    def priority(self):
+        return weight.weigh_attack(self) * 10
 
     def take(self):
         # TODO: sort better, adjust for attackers better
@@ -104,43 +156,25 @@ class Attack(Commitment):
         return super(Attack, self).take(attackers, required, distance)
 
     def __repr__(self):
-        return 'Attack %s (%s)' % (self.planet, self.priority)
+        neighbor = self.planet.find_nearest_neighbor(owner=ME)
+        distance = self.planet.distance(neighbor)
+        return super(Attack, self).__repr__() + ' %d' % distance
 
 
-class MultiAction(Action):
+class Reserve(Action):
+    @property
+    def priority(self):
+        return weight.weigh_reserve(self) * 8
+
+    def __init__(self, planet):
+        super(Reserve, self).__init__(planet)
+        self.fleets = planet.ship_count / 2
+
     def take(self):
-        return list(chain(*(a.take() for a in self.actions)))
-
-    def abort(self):
-        return list(chain(*[a.abort() for a in self.actions]))
-
-
-
-class Defend(MultiAction):
-    def __init__(self, planet):
-        super(Defend, self).__init__(planet)
-        self.actions = [OpposeFleet(planet, f) for f in planet.attacking_fleets]
-        self.priority = planet.growth_rate * 100
+        available = self.planet.available(self.planet, 0)
+        if available < self.fleets: raise InsufficientFleets
+        self.commit(self.planet, self.planet, self.fleets, 0)
+        return self.contracts
 
     def __repr__(self):
-        return 'Defend %s (%s)' % (self.planet, self.priority)
-
-
-class Reinforce(MultiAction):
-    # TODO: if the first request failes, make a lighter one
-    # (override engage)
-
-    def __init__(self, planet):
-        super(MultiAction, self).__init__(planet)
-        ours = self.universe.find_fleets(owner=ME, destination=planet)
-        time = max(f.turns_remaining for f in ours) if ours else 0
-        fleets = planet.ship_count + (planet.growth_rate * time) + 1
-        fleets -= sum(f.ship_count for f in ours)
-        self.fleets, self.time = fleets, time
-        self.actions = [Request(planet, fleets, time)] if fleets > 0 else []
-        self.priority = planet.growth_rate * 10
-        for fleet in self.universe.find_fleets(owner=ENEMIES, destination=planet):
-            self.actions.append(OpposeFleet(planet, fleet))
-
-    def __repr__(self):
-        return 'Reinforce %s (%s) with %s by %s' % (self.planet, self.priority, self.fleets, self.time)
+        return super(Reserve, self).__repr__() + ' (keep %s)' % self.fleets
