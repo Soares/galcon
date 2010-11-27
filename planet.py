@@ -3,27 +3,32 @@ log = getLogger('nate')
 
 import action
 from planetwars import planet
-from planetwars.player import ME, NOBODY
+from planetwars.player import ME
 
 class Planet(planet.Planet):
+    @property
+    def contested(self):
+        if self.owner == ME:
+            return bool(self.attacking_fleets)
+        return bool(self.universe.find_fleets(owner=ME, destination=self))
+
     def actions(self):
         if self.owner == ME:
             yield action.Reserve(self)
             yield action.Defend(self)
-        elif self.universe.find_fleets(owner=ME, destination=self):
+        elif self.contested:
             yield action.Reinforce(self)
         else:
             yield action.Attack(self)
 
     def fortify(self):
-        # TODO: Something. Anything. Not this.
-        nearby = self.universe.find_planets(owner=ME | NOBODY) - self
-        contested = lambda p: self.universe.find_fleets(owner=ME, destination=p)
-        forward = lambda p: p.safety > self.safety
-        option = lambda p: forward(p) and (p.owner == ME or contested(p))
-        ordered = sorted(filter(option, nearby), key=lambda p: p.distance(self))
-        if not ordered: return
-        target = ordered[0]
+        candidates = filter(lambda p: p.contested, self.universe.planets)
+        if not candidates: return
+        target = min(candidates, key=lambda p: p.distance(self))
+        distance = self.distance(target)
+        others = self.universe.my_planets - self
+        closer = filter(lambda p: p.distance(target) < distance, others)
+        if closer: target = min(closer, key=lambda p: p.distance(self))
         available = self.available(target)
         if available: self.send_fleet(target, available)
 

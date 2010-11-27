@@ -48,15 +48,12 @@ class Action(object):
 
 class Commitment(Action):
     def take(self, attackers, needed, time):
-        log.debug('Committing %s from %s in %s' % (needed, attackers, time))
         for planet in sorted(attackers, key=lambda p: -p.proximity):
-            log.debug('%s available from %s' % (planet.available(self.planet, time), planet))
             fleets = min(needed, planet.available(self.planet, time))
             self.commit(planet, self.planet, fleets, time)
             needed -= fleets
             if not needed: break
         else:
-            log.debug('failed')
             raise InsufficientFleets
         return self.contracts
 
@@ -92,7 +89,6 @@ class OpposeFleet(Request):
         if contract: contract.oppose(self.fleet)
 
     def take(self):
-        log.debug('DEFENDING')
         return super(OpposeFleet, self).take()
 
 

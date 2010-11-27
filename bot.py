@@ -12,25 +12,17 @@ class Bot(BaseBot):
 
         for planet in planets:
             enemy = planet.find_nearest_neighbor(owner=ENEMIES)
-            planet.proximity = planet.distance(enemy)
+            if enemy: planet.proximity = planet.distance(enemy)
             planet.contracts = {}
+            planet.safety = 3
         for planet in self.universe.nobodies_planets:
             enemy = planet.find_nearest_neighbor(owner=ENEMIES)
             if enemy: planet.proximity = planet.distance(enemy)
-        for planet in enemies:
-            planet.proximity = 0
-            planet.safety = 0
-
-        current = set(enemies)
-        mine = set(self.universe.my_planets | self.universe.nobodies_planets)
-        while mine:
-            safer = set()
-            for unsafe in current:
-                planet = sorted(mine, key=lambda p: p.distance(unsafe))[0]
-                planet.safety = unsafe.safety + 1
-                safer.add(planet)
-            mine -= safer
-            current = safer
+            planet.safety = 3
+        for enemy in enemies:
+            enemy.proximity = 0
+            enemy.safety = 0
+            sorted(planets, key=lambda p: p.distance(enemy))[0].safety = 0
 
 
     def do_turn(self):
