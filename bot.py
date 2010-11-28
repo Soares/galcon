@@ -24,14 +24,13 @@ class Bot(BaseBot):
                 p.owner == ENEMIES or
                 p.owner == ME and p.condemned or
                 p.owner == NOBODY and p.incoming_enemies)
-        log.debug('%d idlers' % self.universe.idlers)
-        return max(theirs - ours + 9, self.universe.idlers / 88)
+        return max(theirs - ours + 6, self.universe.idlers / 20)
 
     def do_turn(self):
         self.update()
         log.debug('ORDERING ACTIONS =====================================')
         actions = sorted(chain(*(p.actions() for p in self.universe.planets)))
-        actions = filter(lambda a: log.debug(a) or a.priority > 0, actions)
+        actions = filter(lambda a: log.debug(a.show()) or a.priority > 0, actions)
         log.info('TAKING ACTIONS =====================================')
         for action in actions:
             action.engage()
@@ -40,3 +39,4 @@ class Bot(BaseBot):
         for planet in self.universe.planets:
             planet.step()
         self.universe.quota = self.quota()
+        log.debug('quota is %d' % self.universe.quota)
