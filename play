@@ -1,1 +1,1 @@
-java -jar tools/PlayGame.jar maps/map21.txt 1000 1000 log.txt "python2.5 MyBot.py --log logfile --level DEBUG" "java -jar example_bots/BullyBot.jar" | java -jar tools/ShowGame.jar
+java -jar tools/PlayGame.jar maps/map99.txt 1000 1000 log.txt "python2.5 MyBot.py --log logfile --level DEBUG" "java -jar example_bots/BullyBot.jar" | java -jar tools/ShowGame.jar
