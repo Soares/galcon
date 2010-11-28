@@ -11,7 +11,6 @@ def commit(planet, needs, sources, time):
     locks = set()
     for source in sorted(sources, key=lambda p: -p.proximity):
         fleets = min(needs, source.available(planet, time))
-        log.debug('%s has %s: %s' % (source, fleets, source.locks))
         if fleets:
             locks.add((source, planet, fleets, time))
             needs -= fleets

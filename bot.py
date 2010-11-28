@@ -24,9 +24,8 @@ class Bot(BaseBot):
                 p.owner == ENEMIES or
                 p.owner == ME and p.condemned or
                 p.owner == NOBODY and p.incoming_enemies)
-        delta = (theirs - ours + 9) if theirs > ours else 0
-        idle = self.universe.idlers / 88
-        return max(delta, idle)
+        log.debug('%d idlers' % self.universe.idlers)
+        return max(theirs - ours + 9, self.universe.idlers / 88)
 
     def do_turn(self):
         self.update()

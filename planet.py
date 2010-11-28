@@ -43,7 +43,8 @@ class Planet(planet.Planet):
     def execute(self):
         for (planet, fleets) in self.locks.get(0, ()):
             self.send_fleet(planet, fleets)
-        if self.condemned: log.debug('%s CONDEMNED' % self)
+        if self.condemned:
+            log.debug('%s has been condemned (%d turns)' % (self, self.condemned_in))
         self.advance()
 
     def step(self):
@@ -69,14 +70,13 @@ class Planet(planet.Planet):
         a2b = float(source.position.y - self.position.y) / float(source.position.x - self.position.x)
         a2c = float(source.position.y - dest.position.y) / float(source.position.x - dest.position.x)
         theta = abs(tan(a2b - a2c))
-        log.debug('WAYPOINT %s between %s and %s: %s' % (self, source, dest, theta))
         return theta <= MAX_WAYPOINT_ANGLE
 
     def advance(self):
         enemy = self.find_nearest_neighbor(owner=ENEMIES)
         if not enemy:
             return
-        waypoints = [p for p in self.universe.planets
+        waypoints = [p for p in self.universe.planets - self
                 if (p.owner == ME or p.conquering)
                 and p.is_waypoint(self, enemy)]
         if not waypoints:
