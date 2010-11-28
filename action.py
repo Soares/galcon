@@ -32,21 +32,30 @@ class Action(object):
     def weigh_proximity(cls, planet):
         if not planet.universe.enemy_planets:
             return 1
+        if not planet.universe.my_planets:
+            return 1
+        distance = min(planet.distance(p) for p in planet.universe.my_planets)
         proximity = min(planet.distance(p) for p in planet.universe.enemy_planets)
         p = max(proximity, 7)
-        return (7.0 / p)**2
+        p = (7.0 / p)**2
+        return p if proximity >= distance else -p
 
     @classmethod
     def weigh_distance(cls, planet):
         if not planet.universe.my_planets:
-            return 0
+            return 1
         distance = min(planet.distance(p) for p in planet.universe.my_planets)
         d = max(distance, 7)
         return (7.0 / d)**2
 
     @classmethod
     def weigh_cost(cls, planet):
-        c = max(planet.ship_count, 10)
+        if not planet.universe.my_planets:
+            return 1
+        distance = min(planet.distance(p) for p in planet.universe.my_planets)
+        growth_rate = planet.growth_rate if planet.owner & ENEMIES else 0
+        growth = growth_rate * distance * 1.5
+        c = max(planet.ship_count + growth, 10)
         return 10.0 / c
 
     @classmethod
@@ -66,14 +75,16 @@ class Action(object):
 
     def __repr__(self):
         return '%s: %s %s' % (int(self.priority), self.__class__.__name__, self.planet)
-        # return '%s: %s %s (%s %s %s %s)' % (
-        #   int(self.priority),
-        #   self.__class__.__name__,
-        #   self.planet,
-        #   self.weigh_growth(self.planet),
-        #   self.weigh_distance(self.planet),
-        #   self.weigh_cost(self.planet),
-        #   self.weigh_proximity(self.planet))
+
+    def show(self):
+        return '%s: %s %s (%.2fg %.2fd %.2fc %.2fp)' % (
+          int(self.priority),
+          self.__class__.__name__,
+          self.planet,
+          self.weigh_growth(self.planet),
+          self.weigh_distance(self.planet),
+          self.weigh_cost(self.planet),
+          self.weigh_proximity(self.planet))
 
 class Defend(Action):
     WEIGHT = 2
@@ -107,7 +118,7 @@ class Defend(Action):
             last = arrival
 
     def oppose(self, fleet, backup):
-        if fleet.ship_count > 0:
+        if fleet.ship_count - backup > 0:
             return commit(self.planet, fleet.ship_count - backup,
                     self.defenders, fleet.turns_remaining)
 
@@ -151,7 +162,8 @@ class Attack(Action):
             attacking = self.opposition(distance)
             reinforcing = self.reinforcements(distance)
             required = base + (distance * growth) + attacking - reinforcing
-            if available > required: break
+            if available >= required:
+                break
         else:
             log.info('%s FAILED' % self)
             self.planet.conquered_in = None
