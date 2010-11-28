@@ -1,7 +1,7 @@
 from logging import getLogger
 log = getLogger('nate')
 
-from planetwars.player import ME, ENEMIES
+from planetwars.player import ME, ENEMIES, NOBODY
 
 class InsufficientFleets(Exception):
     pass
@@ -9,9 +9,8 @@ class InsufficientFleets(Exception):
 
 def commit(planet, needs, sources, time):
     locks = set()
-    for source in sorted(sources, key=lambda p: -p.proximity):
+    for source in sorted(sources, key=lambda p: -p.safety):
         fleets = min(needs, source.available(planet, time))
-        log.debug('%s has %s' % (source, fleets))
         if fleets:
             locks.add((source, planet, fleets, time))
             needs -= fleets
@@ -30,16 +29,10 @@ class Action(object):
         return (g**2) / 25.0
 
     @classmethod
-    def weigh_proximity(cls, planet):
-        if not planet.universe.enemy_planets:
-            return 1
-        if not planet.universe.my_planets:
-            return 1
-        distance = min(planet.distance(p) for p in planet.universe.my_planets)
-        proximity = min(planet.distance(p) for p in planet.universe.enemy_planets)
-        p = max(proximity, 7)
-        p = (7.0 / p)**2
-        return p if proximity >= distance else -p
+    def weigh_safety(cls, planet):
+        s = max(planet.safety, 7)
+        s = (7.0 / s)**2
+        return s if planet.ourside else -2*s
 
     @classmethod
     def weigh_distance(cls, planet):
@@ -64,8 +57,8 @@ class Action(object):
         g = cls.weigh_growth(planet)
         d = cls.weigh_distance(planet)
         c = cls.weigh_cost(planet)
-        p = cls.weigh_proximity(planet)
-        return (40*g) + (30*d) + (15*p) + (25*c)
+        s = cls.weigh_safety(planet)
+        return (40*g) + (30*d) + (15*s) + (25*c)
 
     @property
     def priority(self):
@@ -78,14 +71,14 @@ class Action(object):
         return '%s: %s %s' % (int(self.priority), self.__class__.__name__, self.planet)
 
     def show(self):
-        return '%s: %s %s (%.2fg %.2fd %.2fc %.2fp)' % (
+        return '%s: %s %s (%.2fg %.2fd %.2fc %.2fs)' % (
           int(self.priority),
           self.__class__.__name__,
           self.planet,
           self.weigh_growth(self.planet),
           self.weigh_distance(self.planet),
           self.weigh_cost(self.planet),
-          self.weigh_proximity(self.planet))
+          self.weigh_safety(self.planet))
 
 class Defend(Action):
     WEIGHT = 2
@@ -132,16 +125,25 @@ class Attack(Action):
     WEIGHT = 1
 
     @classmethod
-    def overexpanding(cls, planet):
-        owned = sum(p.growth_rate for p in planet.universe.my_planets)
-        taking = sum(p.growth_rate for p in planet.universe.contested)
-        ratio = (taking + planet.growth_rate) / owned
-        return ratio > 2
+    def weigh_type(cls, planet):
+        if planet.owner == NOBODY:
+            if planet.ourside and planet.incoming_enemies:
+                return 1.0
+            elif planet.ourside:
+                return 0.8
+            elif not planet.incoming_enemies:
+                return 0.5
+            else:
+                return 0.4
+        elif planet.owner & ENEMIES:
+            return 0.3
+        return 0
 
     @classmethod
     def weigh(cls, planet):
         weight = Action.weigh(planet)
-        return weight * (1 if planet.owner == ME else .7)
+        t = cls.weigh_type(planet)
+        return weight * t
 
     def __init__(self, planet):
         self.universe = planet.universe
@@ -149,24 +151,42 @@ class Attack(Action):
         self.backup = planet.incoming_reinforcements
         self.bogies = planet.incoming_enemies
 
+    def delay(self):
+        """ If there's still natives to fight, let them do the dirty work """
+        if self.planet.owner != NOBODY:
+            return 0
+        if self.planet.incoming_reinforcements:
+            return 0
+        total, turns = 0, 0
+        fleets = self.planet.incoming_enemies
+        for f in sorted(fleets, key=lambda f: f.turns_remaining):
+            total += f.ship_count
+            turns = f.turns_remaining
+            if total >= self.planet.ship_count:
+                break
+        return turns + 1
+
     def engage(self):
         if self.planet not in self.universe.marks and self.universe.quota <= 0:
             log.debug('Will not attack %s - overexpansion' % self.planet)
             return
+        delay = self.delay()
         growth = self.planet.growth_rate if self.planet.owner & ENEMIES else 0
         base = self.planet.ship_count + 1
         planets = sorted(self.universe.my_planets, key=lambda p: p.distance(self.planet))
+        neutral = self.planet.owner == NOBODY
         for i in range(len(planets)):
             attackers = planets[:i+1]
-            distance = planets[i].distance(self.planet)
+            distance = max(planets[i].distance(self.planet), delay)
             available = sum(p.available(self.planet, distance) for p in attackers)
             attacking = self.opposition(distance)
             reinforcing = self.reinforcements(distance)
-            required = base + (distance * growth) + attacking - reinforcing
+            ground = abs(base - attacking) if neutral else (base + attacking)
+            required = ground + (distance * growth) - reinforcing
             if available >= required:
                 break
         else:
-            log.info('%s FAILED' % self)
+            log.debug('%s FAILED' % self)
             self.planet.conquered_in = None
             self.universe.marks.discard(self.planet)
             return set()
@@ -176,6 +196,8 @@ class Attack(Action):
         self.universe.quota -= self.planet.growth_rate
         if required > 0:
             commit(self.planet, required, attackers, distance)
+        else:
+            log.info('no troop commitment necessary')
 
     def reinforcements(self, distance):
         return sum(f.ship_count for f in self.backup if f.turns_remaining <= distance)

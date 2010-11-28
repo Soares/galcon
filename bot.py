@@ -2,29 +2,31 @@ from itertools import chain
 from logging import getLogger
 log = getLogger('nate')
 from planetwars import BaseBot
-from planetwars.player import ENEMIES, ME, NOBODY
+from planetwars.player import ENEMIES, ME
 
 
 class Bot(BaseBot):
     def update(self):
         self.universe.idlers = 0
+        mine = self.universe.my_planets
         enemies = self.universe.enemy_planets
-        if not enemies:
+        if not enemies or not mine:
             return
-        for planet in enemies:
-            planet.proximity = 0
-        for planet in self.universe.planets - enemies:
-            enemy = planet.find_nearest_neighbor(owner=ENEMIES)
-            planet.proximity = planet.distance(enemy)
+        for planet in self.universe.planets:
+            planet.safety = planet.distance(
+                    planet if planet.owner & ENEMIES
+                    else planet.find_nearest_neighbor(owner=ENEMIES))
+            planet.proximity = planet.distance(
+                    planet if planet.owner == ME
+                    else planet.find_nearest_neighbor(owner=ME))
+            planet.ourside = planet.safety >= planet.proximity
 
     def quota(self):
         ours = sum(p.growth_rate for p in self.universe.planets if
                 p.owner == ME or p.incoming_reinforcements)
         theirs = sum(p.growth_rate for p in self.universe.planets if
-                p.owner == ENEMIES or
-                p.owner == ME and p.condemned or
-                p.owner == NOBODY and p.incoming_enemies)
-        return max(theirs - ours + 6, self.universe.idlers / 20)
+                p.owner == ENEMIES or p.incoming_enemies)
+        return max(theirs - ours, self.universe.idlers / 50)
 
     def do_turn(self):
         self.update()
@@ -34,7 +36,7 @@ class Bot(BaseBot):
         log.info('TAKING ACTIONS =====================================')
         for action in actions:
             action.engage()
-        for planet in self.universe.my_planets:
+        for planet in sorted(self.universe.my_planets):
             planet.execute()
         for planet in self.universe.planets:
             planet.step()

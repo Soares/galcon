@@ -76,10 +76,13 @@ class Planet(planet.Planet):
         return theta <= angle
 
     def advance(self):
+        enemy = self.find_nearest_neighbor(owner=ENEMIES)
+        if not enemy:
+            self.universe.idlers += self.available()
+            return
         waypoints = [p for p in self.universe.planets - self
-                if (p.owner == ME or p in self.universe.marks)
-                and any(p.is_waypoint(self, e)
-                    for e in self.universe.enemy_planets)]
+                if (p.owner == ME or p.incoming_reinforcements)
+                and p.is_waypoint(self, enemy)]
         if not waypoints:
             self.reinforce()
             self.universe.idlers += self.available()
@@ -91,9 +94,9 @@ class Planet(planet.Planet):
             self.send_fleet(target, available)
 
     def reinforce(self):
-        fleets = min(self.growth_rate * 2, self.available())
+        fleets = min(self.growth_rate, self.available())
         targets = [p for p in self.universe.marks
-                if p.owner != ME
+                if p.owner != ME and p.incoming_reinforcements
                 and any(p.is_waypoint(self, e, MAX_REINFORCE_ANGLE)
                     for e in self.universe.enemy_planets)]
         if targets and fleets:
@@ -131,3 +134,10 @@ class Planet(planet.Planet):
         assert delay <= time
         if fleets:
             self.locks.setdefault(time - delay, set()).add((planet, fleets))
+
+    def __lt__(self, other):
+        ours = self.locks.get(0, set())
+        theirs = other.locks.get(0, set())
+        ours = (sum(f for (p, f) in ours), len(ours), self.id)
+        theirs = (sum(f for (p, f) in theirs), len(theirs), other.id)
+        return ours < theirs
