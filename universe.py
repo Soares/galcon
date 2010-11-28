@@ -4,4 +4,6 @@ log = getLogger('nate')
 from planetwars import universe
 
 class Universe(universe.Universe):
-    pass
+    quota = float('infinity')
+    idlers = 0
+    marks = set()

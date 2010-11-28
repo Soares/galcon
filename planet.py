@@ -6,16 +6,21 @@ from action import Attack, Defend
 from planetwars import planet
 from planetwars.player import ME, ENEMIES
 
-MAX_WAYPOINT_ANGLE = radians(30)
+MAX_WAYPOINT_ANGLE = radians(20)
 
 class Planet(planet.Planet):
+    ###################################################################
+    # Extra Properties
+    #
     conquered_in = None
     conquering = property(lambda self: self.conquered_in is not None)
     condemned_in = None
     condemned = property(lambda self: self.condemned_in is not None)
-    threats = set()
     locks = {}
 
+    ###################################################################
+    # Convenience Properties
+    #
     @property
     def incoming_enemies(self):
         return self.universe.find_fleets(owner=ENEMIES, destination=self)
@@ -24,6 +29,9 @@ class Planet(planet.Planet):
     def incoming_reinforcements(self):
         return self.universe.find_fleets(owner=ME, destination=self)
 
+    ###################################################################
+    # Main Turn
+    #
     def actions(self):
         if self.owner == ME and self.attacking_fleets:
             yield Defend(self)
@@ -32,59 +40,61 @@ class Planet(planet.Planet):
         if self.owner != ME:
             yield Attack(self)
 
+    def execute(self):
+        for (planet, fleets) in self.locks.get(0, ()):
+            self.send_fleet(planet, fleets)
+        if self.condemned: log.debug('%s CONDEMNED' % self)
+        self.advance()
+
     def step(self):
-        if self.contested:
+        if self.conquering:
             self.conquered_in -= 1
         if self.condemned:
             self.condemned_in -= 1
-        self.threats = set()
         self.locks = {}
 
+    ###################################################################
+    # Helper Methods
+    #
     def is_waypoint(self, source, dest):
         if source == self:
             return False
         A = source.distance(dest)
         B = source.distance(self)
         C = self.distance(dest)
-        if A**2 >= B**2 + C**2:
+        if A**2 <= B**2 + C**2:
             return False
-        a2b = float(source.y - self.y) / float(source.x - self.x)
-        a2c = float(source.y - dest.y) / float(source.x - dest.x)
+        if source.position.x == dest.position.x:
+            return True
+        a2b = float(source.position.y - self.position.y) / float(source.position.x - self.position.x)
+        a2c = float(source.position.y - dest.position.y) / float(source.position.x - dest.position.x)
         theta = abs(tan(a2b - a2c))
+        log.debug('WAYPOINT %s between %s and %s: %s' % (self, source, dest, theta))
         return theta <= MAX_WAYPOINT_ANGLE
 
-    def targets(self):
-        # TODO: Don't send through planets that are condemned before we arrive
-        if self.threats:
-            return filter(self.is_waypoint, self.universe.contested)
-        targets = self.universe.contested
-        targets |= set(p for p in self.universe.my_planets if p.threats)
-        target = min(targets, key=lambda p: p.distance(self))
-        waypoints = (p for p in self.universe.my_planets if p.is_waypoint(self, target))
-        return [min(waypoints, key=lambda p: p.distance(self))]
-
-    def flood(self, targets):
-        if len(targets) == 1:
-            target, = targets
-            self.send_fleets(target, self.available())
+    def advance(self):
+        enemy = self.find_nearest_neighbor(owner=ENEMIES)
+        if not enemy:
             return
-        weights = dict((p, Attack.weigh(p)) for p in targets)
-        total = sum(w for w in weights.values() if w > 0)
+        waypoints = [p for p in self.universe.planets
+                if (p.owner == ME or p.conquering)
+                and p.is_waypoint(self, enemy)]
+        if not waypoints:
+            self.universe.idlers += self.available()
+            return
+        target = min(waypoints, key=lambda p: p.distance(self))
         available = self.available()
-        for (planet, weight) in weights.items():
-            if weight <= 0: continue
-            self.send_fleets(p, int(available * (weight / total)))
+        if available:
+            self.send_fleet(target, available)
 
-    def execute(self):
-        for (planet, fleets) in self.locks[0]:
-            self.send_fleet(planet, fleets)
-        self.flood(self.targets())
-
+    ###################################################################
+    # Fleet Calculation
+    #
     def available(self, dest=None, expiration=None):
         delay = 0 if dest is None else self.distance(dest)
         build_time = 0 if expiration is None else expiration - delay
         if build_time < 0: return 0
-        steps = max([build_time] + self.contracts.keys())
+        steps = max([build_time] + self.locks.keys())
         available = self.ship_count
         futures = 0
         for i in range(steps + 1):
@@ -102,4 +112,7 @@ class Planet(planet.Planet):
         return max(0, available)
 
     def lock(self, planet, fleets, time):
-        self.locks.setdefault(time, set()).add((planet, fleets))
+        delay = self.distance(planet)
+        assert delay <= time
+        if fleets:
+            self.locks.setdefault(time - delay, set()).add((planet, fleets))
