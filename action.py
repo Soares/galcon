@@ -131,10 +131,8 @@ class Attack(Action):
                 return 1.0
             elif planet.ourside:
                 return 0.8
-            elif not planet.incoming_enemies:
-                return 0.5
             else:
-                return 0.4
+                return 0.1
         elif planet.owner & ENEMIES:
             return 0.3
         return 0

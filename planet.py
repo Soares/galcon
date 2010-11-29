@@ -84,7 +84,6 @@ class Planet(planet.Planet):
                 if (p.owner == ME or p.incoming_reinforcements)
                 and p.is_waypoint(self, enemy)]
         if not waypoints:
-            self.reinforce()
             self.universe.idlers += self.available()
             return
         target = min(waypoints, key=lambda p: p.distance(self))
